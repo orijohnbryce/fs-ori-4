@@ -5,14 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>videos</title>
+
+    <style>
+        td,
+        th {
+            border: 1px black solid;
+            padding: 5px;
+            ;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h3> search on youtube: </h3>
+    <h3 style="font-weight: 100; font-size: 32px;"> search on youtube: </h3>
     <form action="https://www.youtube.com/results" target="_blank">
-        <input name="search_query">
-        <button> search </button>
+        <input name="search_query" style="height: 50px;">
+        <button style="width: 500px;"> search </button>
     </form>
     <br />
     <br />
@@ -21,8 +30,11 @@
         <li> <a href="https://www.youtube.com/results?search_query=cats"> Cats</a> </li>
         <li> <a href="https://www.youtube.com/watch?v=pxn0wL_uSm4"> Dogs </a> </li>
     </ol>
-
-    <table border="20px">
+        
+    <table style="
+        background-color: green; 
+        margin: auto; 
+        border-collapse: collapse;">
         <tr>
             <th>name </th>
             <th>link</th>
