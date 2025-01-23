@@ -1,0 +1,20 @@
+body {
+    background-color: bisque;
+}
+
+a {
+    color: green;
+    display: block;
+    width: 200px;
+    border: 2px black solid;
+    text-align: center;
+    background-color: yellow;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.my-title {    
+    font-weight: 100;
+    font-size: 32px;
+    text-align: center;
+}

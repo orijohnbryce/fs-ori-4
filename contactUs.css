@@ -1,0 +1,27 @@
+body {
+    text-align: center;    
+}
+
+.my-form {
+    background-color: rgb(114, 240, 91);
+    color: red;
+    border: 5px black dashed;
+
+    /* z-index: -1; */
+}
+
+#submit-btn {
+    position: absolute;
+    right: 50px;
+    display: block; 
+    width: 200px;
+    height: 100px;    
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* background-color: rgb(255, 255, 255, 0.5); */
+    /* opacity: 0.5; */
+    font-size: 3em;
+    color: #000000;  
+      
+}
