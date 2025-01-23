@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Position Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    section { padding: 20px; border: 2px solid #ccc; margin: 10px; }
+    .box { width: 100px; height: 100px; background: lightblue; border: 2px solid darkblue; }
+  </style>
+</head>
+<body>
+
+
+  <!-- Static -->
+  <section>
+    <h2>1. Static (default)</h2>
+    <div class="box" style="position: static;">Static</div>
+    <p>This box is in the normal flow of the document.</p>
+  </section>
+
+
+  <!-- Relative -->
+  <section>
+    <h2>2. Relative</h2>
+    <div class="box" style="position: relative; top: 20px; left: 50px;">Relative</div>
+    <p>This box is offset from its normal position.</p>
+       
+    <p>style="position: relative; top: 20px; left: 50px;"</p>
+  </section>
+
+
+  <!-- Absolute -->
+  <section style="position: relative;">
+    <h2>3. Absolute</h2>
+    <div class="box" style="position: absolute; top: 20px; left: 50px;">Absolute</div>
+    <p>This box is positioned relative to its nearest positioned ancestor (this section).</p>
+    <br/>
+    <p> style="position: absolute; top: 20px; left: 50px;" </p>
+  </section>
+
+
+  <!-- Fixed -->
+  <section>
+    <h2>4. Fixed</h2>
+    <div class="box" style="position: fixed; bottom: 20px; right: 20px;">Fixed</div>
+    <p>This box is fixed to the viewport (try scrolling).</p>
+    <p> style="position: fixed; bottom: 20px; right: 20px;"</p>
+  </section>
+
+
+  <!-- Sticky -->
+  <section style="height: 200px; overflow-y: scroll;">
+    <h2>Sticky</h2>
+    <div class="box" style="position: sticky; top: 10px;">Sticky</div>
+    <p>This box becomes fixed after scrolling past its position.</p>
+    <p> style="position: sticky; top: 10px;" </p>
+    <div style="height: 400px;"></div> <!-- Extra space to scroll -->
+  </section>
+
+
+</body>
+</html>
