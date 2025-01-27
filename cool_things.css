@@ -1,0 +1,17 @@
+:root {
+    --color1: rgb(217, 0, 236);
+    --color2: rgb(70, 231, 73);
+    --gcolor: linear-gradient(to right, white, green);
+}
+.main-div {            
+    /* background: linear-gradient(to right, blue, white, blue);             */
+    background: var(--gcolor);
+    color: var(--color1);
+}
+body {
+    background-color: var(--color2);
+    background-image: url("cats.PNG");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: center; */
+}

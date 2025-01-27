@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            min-height: 100vh;
+            background-color: yellow;
+            display: flex;
+            flex-direction: column-reverse;
+            flex-direction: row;
+            flex-direction: column;
+            flex-direction: row-reverse;
+            justify-content: end;
+            justify-content: space-between;
+            justify-content: space-around;
+            justify-content: start;
+            align-items: center;
+        }
+        .item {
+            padding: 1%;
+            max-height: 100px;
+            background-color: aqua;
+            margin: 2%;
+            max-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item"> 1 </div>
+        <div class="item"> 2 </div>
+        <div class="item" style="height: 50px;"> 3 </div>
+        <div class="item"> 4 </div>
+    </div>
+</body>
+</html>
