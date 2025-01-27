@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .area1 {
+            height: 10vh;
+            background-color: green;
+            display: flex;
+        }
+
+        .area2 {
+            height: 75vh;
+            background-color: yellow;
+        }
+
+        .area3 {
+            height: 7vh;
+            background-color: aqua;
+        }
+
+        .logo {
+            width: 80px;
+        }
+
+        .area1-links {
+            background-color: aqua;
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        a {
+            padding: 2%;
+            background-color: bisque;
+            margin: 0.5%;
+        }
+
+        .area2 {
+            display: flex;
+        }
+
+        .area2-left {
+            width: 70%;
+            background-color: purple;
+            margin: 2%;
+        }
+
+        .area2-right {
+            width: 30%;
+            height: 96%;
+            background-color: brown;
+            display: flex;
+            flex-direction: column;
+            margin: 2%;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .area2-right-top {
+            width: 80%;
+            height: 40%;
+            background-color: black;
+            margin: 1%;
+        }
+
+        .area2-right-bottom {
+            width: 80%;
+            height: 40%;
+            background-color: black;
+            margin: 1%;
+        }
+
+        .area3 {
+            display: flex;
+            justify-content: center;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="area1">
+            <img class="logo" src="cats.PNG" alt="" srcset="">
+            <div class="area1-links">
+                <a href=""> Home </a>
+                <a href=""> About</a>
+                <a href=""> Login</a>
+            </div>
+        </div>
+        <div class="area2">
+            <div class="area2-left"></div>
+            <div class="area2-right">
+                <div class="area2-right-top"></div>
+                <div class="area2-right-bottom"></div>
+            </div>
+        </div>
+        <div class="area3">
+            <a href="http://">FAQ </a>
+            <a href="http://"> Careers</a>
+            <a href="http://"> Login</a>
+        </div>
+    </div>
+</body>
+
+</html>
