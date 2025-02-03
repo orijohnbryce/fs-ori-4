@@ -1,0 +1,48 @@
+.logo {
+    width: 100px;
+}
+
+.section {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.about-image {
+    width: 40%;
+    height: auto;
+}
+.about-text {
+    width: 40%;
+    /* padding: 20px; */
+}
+
+.carousel-section {
+    padding: 150px;
+}
+.menu-dropdown {
+   text-align: center; 
+}
+.products-container {    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.contact-container {
+    margin: 5%;
+}
+
+.left-footer {
+    width: 50%;
+}
+#footer {
+    display: flex;
+    padding: 1% 10%;
+    justify-content: space-around;
+}
+.right-footer {
+    display: flex;
+    flex-direction: column-reverse;
+}
