@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #chat-container {
+            width: 250px;
+            height: 400px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chat-container">
+    </div>
+    <input id="chat-input">
+    <button onclick="
+
+let inputElement = document.getElementById('chat-input');
+
+let newElement = document.createElement('p');
+newElement.innerText = inputElement.value;
+
+document.getElementById('chat-container').appendChild(newElement);
+inputElement.value = '';
+
+inputElement.focus();
+
+"> send</button>
+</body>
+
+</html>
