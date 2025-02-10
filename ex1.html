@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #results {
+            margin-top: 3%;
+            border-radius: 5%;
+            border: 5px solid black;
+            text-align: center;
+            background-color: green;
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <!-- label -->
+        <input id="in1" type="number" />
+        <br />
+        <input id="in2" type="number" />
+    </section>
+
+    <section>
+        <button onclick="multiply()" onmouseenter="enter()" onmouseleave="leave()"> * </button>
+        <button onclick="divide()" onmouseenter="enter()" onmouseleave="leave()"> /</button>
+        <button onclick="minus()" onmouseenter="enter()" onmouseleave="leave()"> - </button>
+    </section>
+
+    <div id="results"></div>
+
+    <script src="ex1_script.js"></script>
+</body>
+
+</html>
