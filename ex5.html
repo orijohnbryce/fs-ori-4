@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input />
+    <input />
+    <input />
+    <input />
+
+    <button onclick="run()"> run </button>
+    <script>
+        function run() {
+            let x1 = Number(document.querySelectorAll('input')[0].value)
+            let x2 = Number(document.querySelectorAll('input')[1].value)
+            let x3 = Number(document.querySelectorAll('input')[2].value)
+            let x4 = Number(document.querySelectorAll('input')[3].value)
+
+            const sum = x1 + x2 + x3 + x4
+            const avr = sum / 4;
+            console.log(`The sum of all numbers is ${sum}`);
+            console.log(`The average of all numbers is ${avr}`);
+        }
+    </script>
+</body>
+
+</html>
