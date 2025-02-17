@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="number"/>
+    <button onclick="check()"> Try </button>
+    <p id="results"> </p>
+
+    <script>
+        let NUMBER = Math.round(Math.random() * 99) + 1;
+        console.log(NUMBER);
+        
+    </script>
+
+    <script>
+        function check() {
+            let n = Number(document.querySelector("input").value);
+
+            let resElement =  document.querySelector("#results");
+            if (n === NUMBER){
+                resElement.textContent = "Well done!"
+            } else if (n < NUMBER){
+                resElement.textContent = "The number is higher"
+            } else {
+                resElement.textContent = "The number is lower"
+            }
+        }
+    </script>
+</body>
+</html>

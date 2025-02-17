@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button onclick="run()">
+        Click Here!
+    </button>
+
+    <script>
+        let TIME;
+        function run() {
+            if (!TIME) {
+                // first click:
+                TIME = Date.now();
+            } else {
+                let interval = Date.now() - TIME;
+                window.alert(`Time between clicks: ${(interval / 1000).toFixed(2)} seconds`)
+            }
+        }
+    </script>
+</body>
+
+</html>
