@@ -42,6 +42,30 @@
 // console.log(global.Math);  // window on browser = global in nodeJS
 
 
+// let i = 0;
+// while (i < 20) {
 
+//     if (i === 8){
+//         continue;
+//     }
+//     i++;
+//     console.log(i);        
+// }
+
+
+// ==================
+
+// let i = 2;
+// while (i)
+//     console.log(--i);
+
+//  =================
+
+let i = 4;
+while (i<5) {
+    let x = 5;
+    break;
+}
+console.log(x);  // error
 
 
