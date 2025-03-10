@@ -6,15 +6,17 @@
     <title>Document</title>
     
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <div id="d1">
         <h1 id="d1-h1"> Text d1-h1 </h1>
     </div>
     <div id="d2">
-        <button id="d2-btn"> CLICK </button>
+        <button id="d2-btn" onclick="changeColor()"> CLICK </button>
         <p id="d2-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, soluta? Similique minus modi rem minima non? Laborum sunt exercitationem pariatur.</p>
     </div>    
+    
     <div id="d3">
         <button >1</button>
         <button >2</button>
@@ -35,5 +37,17 @@
         <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione optio provident eius commodi cum dicta!</p>
     </div>
     
+    <script>
+        function changeColor() {
+            const color = document.querySelector("#d4-d2").style.backgroundColor;
+            console.log(color);  // why on first run it not showing the color??
+            if (color === 'red'){
+                document.querySelector("#d4-d2").style.backgroundColor = 'green';
+            }else {
+                document.querySelector("#d4-d2").style.backgroundColor = 'red';
+            }
+        }
+    </script>
+
 </body>
 </html>
