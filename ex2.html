@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="x" placeholder="enter number of elements " />
+    <input id="y" placeholder="enter width/height" />
+    <input id="color" type="color"/>
+    <button onclick="start()"> start </button>
+
+    <div id="screen"></div>
+
+    <script>
+        function handleOver(e) {
+            const color = document.querySelector("#color").value;
+            e.target.style.backgroundColor = color;
+        }
+
+        function start() {
+            const x = Number(document.querySelector("#x").value);
+            const y = document.querySelector("#y").value + "px";
+
+            const screen = document.querySelector("#screen")
+
+            for (let i = 0; i < x; i++) {
+
+                const newElem = document.createElement("button");
+                newElem.style.width = y;
+                newElem.style.height = y;
+                newElem.addEventListener("mouseover", handleOver)                
+                screen.appendChild(newElem)
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>
