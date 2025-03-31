@@ -1,11 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+
+<body onload="initiatePage()">
+    <input type="date" id="date" onchange="console.log(typeof(event.target.value))"/>
+
+    <button onclick="toggleDarkMode()"> DarkMode </button>
     <script src="script.js"></script>
+
+    <button onclick="saveObjectToLocalStorage()">
+        Save Object
+    </button>
+    <script>
+
+        function saveObjectToLocalStorage(obj) {
+            obj = { 1: 10, 2: 20 }
+            const objJ = JSON.stringify(obj)
+            localStorage.setItem("obj", objJ);
+        }
+
+        function loadObjectFromLocalStorage(key) {
+            const val = localStorage.getItem(key)
+            return JSON.parse(val)
+        }
+
+        function initiatePage() {
+            const bodyElement = document.querySelector("body");
+            const color = localStorage.getItem("color");
+            bodyElement.style.backgroundColor = color;
+        }
+
+        function toggleDarkMode() {
+            const bodyElement = document.querySelector("body")
+
+            if (bodyElement.style.backgroundColor == 'black') {
+                bodyElement.style.backgroundColor = "white";
+            } else {
+                bodyElement.style.backgroundColor = "black";
+            }
+
+            localStorage.setItem("color", bodyElement.style.backgroundColor)
+        }
+    </script>
 </body>
+
 </html>
