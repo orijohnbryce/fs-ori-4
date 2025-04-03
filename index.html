@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <script src="script.js"></script>
+
+    <button onclick="handleClick()"> click </button>
+
+    <script>
+        let counter = 0;
+        let intervalId;
+
+        function handleClick() {
+            if (!intervalId) {
+                intervalId = setInterval(changeColor, 1000, 'david');
+                console.log(intervalId);
+                
+            } else{
+                clearInterval(intervalId);
+                intervalId = undefined;
+            }
+        }
+
+        function changeColor(name) {
+            console.log(name);
+            
+            body = document.querySelector("body");
+            const color = body.style.backgroundColor;
+            if (color === 'red') {
+                body.style.backgroundColor = 'blue';
+            } else {
+                body.style.backgroundColor = 'red';
+            }
+
+            counter++;
+            document.querySelector("button").textContent = counter;
+        }
+
+    </script>
 </body>
+
 </html>

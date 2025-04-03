@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="clock"> 0 </div>
+    <button id="mainB" onclick="handleMainClick()"> Start </button>
+    <button id="secB" onclick="handleSecClick()"> Reset </button>
+
+
+    <script>
+        let IID;  // intervalId
+
+        function handleMainClick() {
+            // const state = document.querySelector("#mainB").textContent;
+            
+            if (!IID){ // undefine                
+                // start
+                IID = setInterval(clock, 100);
+                document.querySelector("#mainB").textContent = "pause";
+            }else {
+                clearInterval(IID);
+                IID = undefined;
+                document.querySelector("#mainB").textContent = "continue";
+            }
+        }
+
+        function handleSecClick() {
+            clearInterval(IID);
+            IID = undefined;
+            document.querySelector("#clock").textContent = 0;
+            document.querySelector("#mainB").textContent = "start";
+        }
+
+        function clock() {
+            const clockElement = document.querySelector("#clock")
+            const currentValue = Number(clockElement.textContent);
+            const newValue = currentValue + 0.1;
+            clockElement.textContent =  newValue.toFixed(1);
+        }
+    </script>
+</body>
+
+</html>
