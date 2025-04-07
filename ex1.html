@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניתוח מילים</title>
+</head>
+
+<body>
+    <h1> ניתוח מילים</h1>
+    <button id="addButton"> הוסף </button>
+    <input id="inputWord" type="text" placeholder="הזן מילה"/>
+    <input id="searchInput" placeholder="חיפוש" />
+    <div id="searchResult"> </div>
+
+    <br/>
+    <label for="capitals"> אותיות גדולות</label>
+    <input id="capitals" type="checkbox"/>
+    <br/>
+    <label for="evens"> זוגיים</label>
+    <input id="evens" type="checkbox"/>
+    <br /><br />
+    <ul id="wordList"></ul>
+
+    <script>
+        const words = [];
+        const wordInputEl = document.querySelector("#inputWord");
+        const searchInputEl = document.querySelector("#searchInput");
+        const wordListEl = document.querySelector("#wordList");
+        const searchResultEl = document.querySelector("#searchResult");
+        const addButtonEl = document.querySelector("#addButton");        
+        const capitalsEl = document.querySelector("#capitals");
+        const evensEl = document.querySelector("#evens");
+
+        function render() {
+            wordListEl.innerHTML = "";
+
+            let displayWords = [...words];
+
+            displayWords = displayWords.map((w)=>capitalsEl.checked ? w.toUpperCase() : w);
+
+            if (evensEl.checked){
+                displayWords = displayWords.filter((w)=>(w.length % 2 === 0))
+                // displayWords = displayWords.filter((w)=>!(w.length % 2))  // same
+            }
+            displayWords.forEach(w => {
+                const listEl = document.createElement("li");
+                listEl.textContent = w;
+                wordListEl.appendChild(listEl);
+            })
+
+            // search
+            if (searchInputEl.value){
+                const foundWord = words.find((w)=>w.includes(searchInputEl.value))
+                searchResultEl.textContent = foundWord ? foundWord : "לא נמצאה התאמה"
+            }else{
+                searchResultEl.innerHTML = "";
+            }
+
+        }
+
+        addButtonEl.addEventListener("click", (e)=>{
+            const word = wordInputEl.value;  // trim
+            if (word){
+                words.push(word);
+                wordInputEl.value = "";
+                render();
+            }
+        })
+        searchInputEl.addEventListener("input", ()=>render());
+        capitalsEl.addEventListener("change", ()=>render());
+        evensEl.addEventListener("change", ()=>render());
+    </script>
+
+</body>
+
+</html>
