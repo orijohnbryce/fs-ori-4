@@ -47,7 +47,7 @@ const myPromise = new Promise((resolve, reject) => {
     Math.random() > 0.5 ? resolve() : reject();
 })
 
-const res3 = myPromise.then(() => {
+myPromise.then(() => {
     console.log("Resolve");
 }).catch(() => {
     console.log("Reject");
