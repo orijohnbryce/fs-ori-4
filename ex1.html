@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 50%;
+        }
+
+        #result {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Array Sum Calculator </h1>
+    <input id="input" placeholder="enter valid JS array. e.g: [1,2,3]" />
+    <br />
+    <button onclick="calc()"> Calculate Sum </button>
+    <div id="result"></div>
+
+    <script>
+
+        const resElement = document.querySelector("#result");
+        const inputElement = document.querySelector("input");
+
+        function calc() {
+            const inputString = inputElement.value.trim();
+            // inputElement.value = "";
+
+            // validate input is not empty
+            // if (inputString.length === 0)
+            if (!inputString) {
+                resElement.innerHTML = "Input is empty";
+                return;
+            }
+
+            // convert string to JS object
+            let arr;
+
+            try {
+                arr = JSON.parse(inputString);
+            } catch (error) {
+                // console.log("Error found!");                                
+                // console.error(error);
+                resElement.innerHTML = "Input is not a valid array"
+                return;
+            }
+
+
+            // validate it is array
+            if (!Array.isArray(arr)) {
+                resElement.innerHTML = "Input is not array";
+            }
+
+            // validate all is numbers
+            for (const n of arr) {
+                if (typeof (n) !== "number") {
+                    resElement.innerHTML = "All elements must be valid JS numbers";
+                    return;
+                }
+            }
+
+            // sum the array's numbers
+            // let sum = 0;
+            // for (const n of arr) {
+            //     sum += n;
+            // }
+            const sum = arr.reduce((a, b) => a + b, 0);
+
+            // print output
+            resElement.innerHTML = `Sum is: ${sum}`;
+
+        }
+
+    </script>
+</body>
+
+</html>

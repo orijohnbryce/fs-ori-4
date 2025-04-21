@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        input {
+            width: 50%;
+        }
+
+        #result {
+            color: green;
+        }
+    </style>
 </head>
+
 <body>
-    <script src="script.js"></script>
+    <h1> Array Sum Calculator </h1>
+    <input id="input" placeholder="enter valid JS array. e.g: [1,2,3]" />
+    <br />
+    <button onclick="calc()"> Calculate Sum </button>
+    <div id="result"></div>
+
+    <script>
+
+        const resElement = document.querySelector("#result");
+        const inputElement = document.querySelector("input");
+
+        function calc() {
+            try {
+                const inputString = inputElement.value.trim();
+
+                // convert string to JS object
+                const arr = JSON.parse(inputString);
+
+                // sum the array's numbers
+                let sum = 0;
+                for (const n of arr) {
+                    if (typeof (n) !== 'number') {
+                        // resElement.innerHTML = `All array elemetns must be numbers`;
+                        // return;
+                        throw new Error(`Elements must be numbers.`);
+                    }
+                    sum += n;
+                }
+
+                // print output
+                resElement.innerHTML = `Sum is: ${sum}`;
+            } catch (error) {
+                console.log(error);
+                console.log(typeof (error));
+
+                let errMsg;
+                if (error instanceof SyntaxError) {
+                    errMsg = "Found syntax error";
+                } else if (error instanceof TypeError) {
+                    errMsg = "Found TypeError";
+                }
+                resElement.innerHTML = `${errMsg}. Invalid input. keep this format: 
+                                        [1,4, .. ]. more info: ${error.message}`;
+
+            }
+        }
+    </script>
 </body>
+
 </html>
