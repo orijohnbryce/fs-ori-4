@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Dog</title>
+
+    <style>
+        #main-image {
+            max-width: 300px;
+            max-height: 300px;
+        }
+
+        .side-image {
+            max-width: 50px;
+            max-height: 50px;
+            border: 1px solid black;
+        }
+
+        .images-container {
+            display: flex;
+        }
+
+        #side-list {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="loadDog()"> Refresh </button>
+
+    <br />
+    <div class="images-container">
+        <div id="result"></div>
+        <div id="side-list"></div>
+    </div>
+
+
+    <script>
+
+        function loadDog() {
+            const url = "https://dog.ceo/api/breeds/image/random";
+
+            fetch(url).then(
+                (res) => {
+                    res.json().then(
+                        (data) => {
+                            addNewDogImage(data.message)
+                        })
+                        .catch((e) => {
+                            console.error(e)
+                            alert("Some error. Sorry try again later..")
+                        })
+                }
+            ).catch((e) => {
+                console.error(e)
+                alert("Error fetching data")
+            })
+        }
+
+        function addNewDogImage(dogUrl, updateList = true) {
+            document.querySelector("#result").innerHTML = `<img id='main-image' src=${dogUrl} alt='Dog image' />`
+
+            if (updateList)
+                updateSideList(dogUrl);
+        }
+
+
+        function updateSideList(newUrl) {
+            const newElement = document.createElement("img");
+            newElement.src = newUrl;
+            newElement.className = "side-image";
+            newElement.alt = "Dog image";
+            document.querySelector("#side-list").appendChild(newElement);
+            newElement.addEventListener('click', () => { addNewDogImage(newUrl, false) })
+        }
+    </script>
+</body>
+
+</html>
