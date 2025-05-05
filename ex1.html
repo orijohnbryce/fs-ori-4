@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="input" />
+    <br />
+    <button onclick="handleOk()"> OK </button>
+    <br />
+    <button onclick="handleReset()"> Reset</button>
+
+    <button onclick="handleClearInterval()"> Clear Interval </button>
+
+    <div id="result"> </div>
+    <script>
+        const inputEl = document.querySelector("#input");
+        const KEY = "input";
+
+        const handleOk = () => {
+            const val = inputEl.value;
+            localStorage.setItem(KEY, val);
+        }
+
+        const handleReset = () => {
+            localStorage.removeItem(KEY);
+        }
+        // console.log(x); // error
+
+        const IID = setInterval(() => {
+            const val = localStorage.getItem(KEY)
+            if (val) {
+
+                let obj;
+                try {
+                    obj = JSON.parse(val)
+                } catch (error) {
+                    if (error.name === "SyntaxError") {
+                        document.querySelector("#result").textContent = "Error " + error.name;
+                        return;
+                    } else {
+                        throw error;
+                    }
+                }
+                const output = JSON.stringify(obj)
+                document.querySelector("#result").textContent = "Valid object:" + val;
+            } else {
+                document.querySelector("#result").textContent = "";
+            }
+
+        }, 1 * 1000)
+
+        console.log(IID);
+        
+        function handleClearInterval() {
+            clearInterval(IID);
+        }
+    </script>
+</body>
+
+</html>
