@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+
+    <style>
+        #header {
+            text-align: center;
+            background-color: green;
+            padding: 5px;
+        }
+
+        #content {
+            height: 80vh;
+            /* background-color: red; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <span> AI - News </span>
+    </div>
+
+    <div id="content">
+
+    </div>
+
+    <script>
+
+        async function fetchNews() {
+            const apiToken = "8e73fde591394cf19e0ff940f4168c45";
+            const url = `https://newsapi.org/v2/top-headlines?q=ai&country=us&apiKey=${apiToken}`
+
+            try {
+                const res = await fetch(url);
+                const resJ = await res.json();
+                // console.log(resJ);
+                createNewsElements(resJ);
+            } catch (error) {
+                console.log(error);
+                alert("Some error fetching data");
+                return;
+            }
+
+
+        }
+
+        function createNewsElements(data) {
+            const articles = data.articles;
+            for (const art of articles) {
+                const link = art.url;
+                const author = art.author;
+                const title = art.title;
+                const content = art.content;
+
+                console.log(link);
+                console.log(author);
+                console.log(title);
+                console.log(content);
+                
+                const newElement = document.createElement("div");
+                
+                newElement.innerHTML = `<div> 
+                    <h2> ${title}</h2> 
+                    <p> ${content} </p>
+                    <a href=${link}> link </a>
+                    </div>`
+                
+                document.querySelector("#content").appendChild(newElement);
+                continue;
+
+                const titleElm = document.createElement("h4");
+                titleElm.textContent = title;
+                newElement.appendChild(titleElm)
+
+                const linkElement = document.createElement("a");
+                linkElement.href = link;
+                linkElement.textContent = "link to source"
+                newElement.appendChild(linkElement)
+
+                const authorElm = document.createElement("p");
+                authorElm.textContent = author;
+                newElement.appendChild(authorElm)
+
+                const contentElm = document.createElement("p");
+                contentElm.textContent = content;
+                newElement.appendChild(contentElm)
+
+                document.querySelector("#content").appendChild(newElement);
+
+                // break;
+            }
+        }
+        fetchNews();
+    </script>
+</body>
+
+</html>

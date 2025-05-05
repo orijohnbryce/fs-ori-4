@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
 </head>
+
 <body>
-    <script src="script.js"></script>
+    <script>
+        console.log("Start");
+        
+        async function myFetch(url) {
+            try {
+                const res = await fetch(url);
+                console.log("status:", res.status);
+            } catch (error) {
+                console.log("Error from myFetch");
+                throw new Error("Testing by new Error object");
+            }
+        }
+
+
+        try {
+            myFetch("htps://dog.ceo/api/breeds/image/random")
+        } catch (error) {
+            console.log("I'm the king!");
+        }
+        console.log(1);
+
+
+    </script>
 </body>
+
 </html>
