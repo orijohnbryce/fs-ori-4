@@ -1,0 +1,25 @@
+body {
+    background-color: green;
+}
+#container {
+    height: 100vh;
+    margin: 3%;    
+}
+#conversation {
+    height: 20%;
+    background-color: yellow;
+    margin: 10%;
+    overflow-y: scroll;
+}
+#input-container { 
+    text-align: center;
+    display: flex;
+    margin: auto;
+}
+#input { 
+    margin: 5%;
+    width: 80%;
+ }
+ #send-btn {
+    margin: 5% 1%;    
+ }

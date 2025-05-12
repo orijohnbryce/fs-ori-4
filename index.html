@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button onclick="showRepos()"> click </button>
-
-    <div id="repos"></div>
-    <script src="script.js"></script>
+    
+    <div id="container"> 
+        <div id="conversation"></div>
+        <div id="input-container">
+            <textarea oninput="handleInputChange(event)" id="input" rows="5"></textarea>
+            <button id="send-btn" disabled onclick="handleSend()"> Send </button>
+        </div>        
+    </div>
+    
+    <script src="ai.js"></script>
 </body>
 </html>

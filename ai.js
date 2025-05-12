@@ -1,7 +1,7 @@
-
+let CONVERSATION = ""
 
 async function callAi(msg) {
-    const token = "<token>";
+    const token = "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";
     const url = "https://api.groq.com/openai/v1/chat/completions";
 
     try {
@@ -15,8 +15,8 @@ async function callAi(msg) {
                 model: 'llama-3.3-70b-versatile',
                 messages: [{
                     role: 'system',
-                    content: "Answer everything in only capital letters",
-                },{
+                    content: "Do not elaborate on responses, be short!",
+                }, {
                     role: 'user',
                     content: msg,
                 }]
@@ -25,15 +25,48 @@ async function callAi(msg) {
         }
         const res = await fetch(url, opt);
         // console.log(res);
-        
-        const resJ = await res.json();
-        console.log(resJ.choices[0].message);
-        
 
+        const resJ = await res.json();
+        return resJ.choices[0].message.content;
     } catch (error) {
-        console.log(error);        
-        // console.log("error");        
+        console.log(error);
+        alert("Error. retry later")
     }
 }
 
-callAi("My name is Ori, say hi to me");
+async function handleSend() {
+    document.querySelector("#send-btn").disabled = true;
+
+    const inputEl = document.getElementById("input");
+    const convEl = document.querySelector("#conversation");
+
+    const newMsg = inputEl.value;
+    if (newMsg.length === 0) {
+        return;
+    }
+    inputEl.value = "";    
+    CONVERSATION = CONVERSATION + `User: ${newMsg}<br/>`;
+    
+    convEl.innerHTML = CONVERSATION;
+
+    try {
+        const aiRes = await callAi(CONVERSATION);
+        CONVERSATION += `AI: ${aiRes}<br/>`
+    } catch (error) {
+        alert("Sorry, error. retry later..")
+    }
+
+    convEl.innerHTML = CONVERSATION;
+}
+
+function handleInputChange(e) {
+    if (e.target.value) {
+        if (e.inputType === "insertLineBreak") { 
+            handleSend();
+            return;
+        }
+        document.querySelector("#send-btn").disabled = false;
+    } else {
+        document.querySelector("#send-btn").disabled = true;
+    }
+}
