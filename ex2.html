@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <div id="quiz-container">
+        <div id="question"></div>
+        <div id="answers"></div>
+        <button id="submit"> Send </button>
+    </div>
+    <div id="result"> </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // data:
+        const data = [
+            {
+                q: "what is 2+2",
+                options: ["3", "4", "5"],
+                correct: 1
+            },
+            {
+                q: "what is 4+5",
+                options: ["9", "4", "5"],
+                correct: 0
+            },
+            {
+                q: "what is 20+20",
+                options: ["30", "14", "40"],
+                correct: 2
+            }
+        ]
+
+        let count = 0;
+        let score = 0;
+
+        function renderQuestionOrResult() {
+            // if finish:
+            if (count === data.length) {
+                $("#quiz-container").hide();
+                $("#result").text(`you got ${score} out of ${data.length}`)
+                return;
+            }
+
+            // render question
+            $("#question").text(data[count].q)
+
+            // render answer-options
+            $("#answers").empty();
+            data[count].options.forEach(
+                (opt, i) => {
+                    $("#answers").append(`<input type='radio' name='answer' value=${i}> ${opt} </input>`)
+                    $("#answers").append(`<br>`)
+            })
+        }
+
+        $("#submit").click(() => {
+            // get the entered value
+            let val = document.querySelector("input[name='answer']:checked");            
+            // console.log(val);
+            
+            if (!val) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            val = val.value
+            // check if correct
+            if (parseInt(val) === data[count].correct) {
+                score++;
+            }
+
+            // move to next question
+            count++;
+            renderQuestionOrResult()
+        })
+
+        // when page ready
+        $(document).ready(renderQuestionOrResult);
+    </script>
+
+</body>
+
+</html>
