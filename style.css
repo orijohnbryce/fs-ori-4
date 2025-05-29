@@ -1,0 +1,26 @@
+#show-all-btn {
+    background-color: red;
+}
+
+#tableContainer {
+    width: 100%;
+    margin-top: 20px;
+}
+
+table {
+    background-color: green;
+    text-align: center;
+    border: 2px solid blue;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th {
+    background-color: aqua;
+}
+
+th,
+td {
+    border: 1px solid black;
+    margin: 5px;
+}
