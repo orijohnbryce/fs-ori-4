@@ -19,7 +19,12 @@
     <div id="loading"> Loading data ... </div>
 
     <div id="controls" style="display: none;">
-        <button id="show-all-btn" onclick="showAllCars()"> Show All Cars </button>
+        <button id="show-all-btn" onclick="showAllCars()"> Show All </button>
+        <button class="filter-btn" onclick="filterCars('km')"> Filter By KM </button>
+        <button class="filter-btn" onclick="filterCars('company')"> Filter By Company </button>
+        <button class="filter-btn" onclick="filterCars('model')"> Filter By Model </button>
+        <button class="filter-btn" onclick="filterCars('year')"> Filter By Year </button>
+        <button class="filter-btn" onclick="filterCars('costPerDay')"> Filter By Cost </button>
     </div>
 
 

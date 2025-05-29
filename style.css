@@ -1,5 +1,11 @@
 #show-all-btn {
     background-color: red;
+    display: block;
+    margin: 5px;
+}
+.filter-btn {
+    background-color: green;
+
 }
 
 #tableContainer {

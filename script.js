@@ -1,4 +1,5 @@
 const cars = []
+let displayedCars = []
 
 const loadingE = $("#loading")[0]  // querySelector("#loading")
 const controlsE = $("#controls")[0]
@@ -11,9 +12,9 @@ class Car {
         this.carId = carId;
         this.company = company;
         this.model = model;
-        this.km = km;
-        this.year = year;
-        this.costPerDay = costPerDay;
+        this.km = parseInt(km);
+        this.year = parseInt(year);
+        this.costPerDay = parseInt(costPerDay);
 
         // validate data
         for (let key in this) {
@@ -60,6 +61,7 @@ async function loadData() {
             // console.log(newCar);
             // return;
         }
+        displayedCars = [...cars]
     } catch (error) {
         console.error(error);
     }
@@ -77,8 +79,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     controlsE.style.display = "block";
 })
 
-
-async function showAllCars() {
+async function showAllCars(carList) {
     let tableHtml = `
     <table>
         <thead>
@@ -91,7 +92,7 @@ async function showAllCars() {
         </thead>
         <tbody>
     `
-    cars.forEach(
+    displayedCars.forEach(
         (car) => {
             tableHtml += `
                 <tr>
@@ -111,5 +112,20 @@ async function showAllCars() {
     tableContainerE.style.display = "block";
 }
 
+async function filterCars(field) {
+    const sortedCars = [...cars];
+    sortedCars.sort(
+        (car0, car1) => {
+            let v0 = car0[field]; // (car0.field not works)
+            let v1 = car1[field];
 
+            if (typeof (v0) === "string")
+                return v0.localeCompare(v1);
+
+            return v0 - v1;
+        }
+    )
+    displayedCars = sortedCars;
+    showAllCars(displayedCars);
+}
 // loadData().then(showAllCars)
