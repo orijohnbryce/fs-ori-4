@@ -20,11 +20,23 @@
 
     <div id="controls" style="display: none;">
         <button id="show-all-btn" onclick="showAllCars()"> Show All </button>
-        <button class="filter-btn" onclick="filterCars('km')"> Filter By KM </button>
-        <button class="filter-btn" onclick="filterCars('company')"> Filter By Company </button>
-        <button class="filter-btn" onclick="filterCars('model')"> Filter By Model </button>
-        <button class="filter-btn" onclick="filterCars('year')"> Filter By Year </button>
-        <button class="filter-btn" onclick="filterCars('costPerDay')"> Filter By Cost </button>
+        <button class="sort-btn" onclick="sortCars('km')"> Sort By KM </button>
+        <button class="sort-btn" onclick="sortCars('company')"> Sort By Company </button>
+        <button class="sort-btn" onclick="sortCars('model')"> Sort By Model </button>
+        <button class="sort-btn" onclick="sortCars('year')"> Sort By Year </button>
+        <button class="sort-btn" onclick="sortCars('costPerDay')"> Sort By Cost </button>
+
+        <br/>
+        <br/>
+        <br/>
+        <input id="filter-year" placeholder="Filter by year" type="number"/>
+        <input id="filter-company" placeholder="Filter by company" />
+        <input id="filter-km-min" placeholder="min km" />
+        <input id="filter-km-max" placeholder="max km" />
+        <br/>
+        <br/>
+        <button onclick="handleFilter()"> Filter </button>
+        
     </div>
 
 

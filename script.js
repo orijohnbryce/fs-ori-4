@@ -79,7 +79,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     controlsE.style.display = "block";
 })
 
-async function showAllCars(carList) {
+async function showAllCars() {
+    displayedCars = [...cars];
+    showCars();
+}
+
+async function showCars(carList) {
     let tableHtml = `
     <table>
         <thead>
@@ -112,7 +117,7 @@ async function showAllCars(carList) {
     tableContainerE.style.display = "block";
 }
 
-async function filterCars(field) {
+async function sortCars(field) {
     const sortedCars = [...cars];
     sortedCars.sort(
         (car0, car1) => {
@@ -126,6 +131,24 @@ async function filterCars(field) {
         }
     )
     displayedCars = sortedCars;
-    showAllCars(displayedCars);
+    showCars(displayedCars);
 }
-// loadData().then(showAllCars)
+
+async function handleFilter() {
+    const yearF = parseInt(document.querySelector("#filter-year").value);
+    const companyF = document.querySelector("#filter-company").value;
+    const kmMin = parseInt(document.querySelector("#filter-km-min").value);
+    const kmMax = parseInt(document.querySelector("#filter-km-max").value);
+
+    displayedCars = cars.filter(
+        (car) => {
+            if (!yearF || car.year == yearF)
+                if (!companyF || car.company.includes(companyF))
+                    if (!kmMin || car.km >= kmMin)
+                        if (!kmMax || car.km <= kmMax)
+                            return true;
+            return false;
+    })
+    showCars();
+}
+// loadData().then(showCars)
