@@ -284,3 +284,4 @@ async function makeGrouping() {
     tableContainerE.style.display = "block";
     tableContainerE.style.textAlign = "center"
 }
+// add event listeners
