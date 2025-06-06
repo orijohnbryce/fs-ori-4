@@ -135,6 +135,7 @@ async function sortCars(field) {
 }
 
 async function handleFilter() {
+    statisticsE.innerHTML = ``
     const yearF = parseInt(document.querySelector("#filter-year").value);
     const companyF = document.querySelector("#filter-company").value;
     const kmMin = parseInt(document.querySelector("#filter-km-min").value);
@@ -151,4 +152,136 @@ async function handleFilter() {
     })
     showCars();
 }
-// loadData().then(showCars)
+async function handleFilterImmediately() {
+    const yearF = parseInt(document.querySelector("#filter-year").value);
+    const companyF = document.querySelector("#filter-company").value;
+    const kmMin = parseInt(document.querySelector("#filter-km-min").value);
+    const kmMax = parseInt(document.querySelector("#filter-km-max").value);
+
+    displayedCars = cars.filter(
+        (car) => {
+            if (!yearF || car.year == yearF)
+                return true;
+            return false;
+    }).filter(
+        (car) => {
+            if (!companyF || car.company.includes(companyF))
+                return true;
+            return false;
+        }
+    ).filter(
+        (car) => {
+            if (!kmMin || car.kmMin >= kmMin)
+                return true;
+            return false; 
+        }
+    ).filter(
+        (car) => {
+            if(!kmMax || car.kmMax <= kmMax)
+                return true;
+            return false;
+        }
+    )
+    showCars();
+
+}
+
+// filter table immediately
+document.querySelector("#filter-year").addEventListener("input", handleFilterImmediately);
+document.querySelector("#filter-company").addEventListener("input", handleFilterImmediately);
+document.querySelector("#filter-km-min").addEventListener("input", handleFilterImmediately);
+document.querySelector("#filter-km-max").addEventListener("input", handleFilterImmediately);
+
+
+// statistics
+async function showStatists() {
+    tableContainerE.innerHTML = "";
+    statisticsE.style.display = "block";
+    let totalCars = cars.length;
+    let avgCost = cars.reduce((sum, car) => sum + car.costPerDay, 0) / totalCars;
+    let oldestCar = cars.reduce((oldest, car) => {
+        return (oldest.year < car.year) ? oldest: car;
+    }, cars[0]);
+
+    let mostExpensiveCar = cars.reduce((expensive, car) => {
+        return (expensive.costPerDay > car.costPerDay) ? expensive: car;
+    }, cars[0]);
+
+    statisticsE.innerHTML = `
+    <div>
+        <p>סך הכל רכבים במאגר : ${totalCars}</p>
+    </div>
+    <div>
+        <p> המחיר הממוצע לרכב ליום הוא : ${avgCost}</p>
+    </div>
+    <div>
+        <p>הרכב הישן ביותר הוא רכב מסוג ${oldestCar.model} - ${oldestCar.company}. </br> 
+        שנת ייצור : ${oldestCar.year}.
+        </p>
+    </div>
+    <div>
+        <p>הרכב היקר ביותר הוא רכב מסוג ${mostExpensiveCar.model} - ${mostExpensiveCar.company}. </br> 
+        מחיר הרכב ליום: ${mostExpensiveCar.costPerDay} ₪.</p>
+    </div>
+    `
+    statisticsE.style.textAlign = "center"
+    statisticsE.style.direction = "rtl"
+} 
+
+// groping 
+
+async function makeGrouping() {
+    tableContainerE.innerHTML = "";
+    statisticsE.innerHTML = "";
+
+    sortCars('company');
+    let sumCars = 0;
+    let company = displayedCars[0].company;
+    let sumCost = 0;
+    let companyDetails = [];
+
+    for (const car of displayedCars) {
+        console.log(companyDetails);
+        
+        if (car.company === company) {
+            sumCars++;
+            sumCost += car.costPerDay;
+        } else {
+            companyDetails.push({
+                company: company,
+                totalCars: sumCars,
+                avgCost: (sumCost / sumCars).toFixed(2)
+            });
+            company = car.company;
+            sumCars = 1;
+            avgCost = car.costPerDay;
+        }
+        // console.log(companyDetails)
+    }
+    tableContainerE.innerHTML = "";
+    statisticsE.innerHTMl = "";
+    let tableHtml = `
+    <table>
+        <thead>
+            <th> Company </th>
+            <th> total Cars </th>
+            <th> average cost </th>
+        </thead>
+        <tbody>
+    `
+    companyDetails.forEach(
+        (summeryCompany) => {
+            tableHtml += `
+                <tr>
+                    <td>${summeryCompany.company}</td>
+                    <td>${summeryCompany.totalCars}</td>
+                    <td>${summeryCompany.avgCost}</td>
+                </tr>`
+        }
+    )
+    tableHtml += `</tbody></table>`
+    tableContainerE.innerHTML = tableHtml;
+    tableContainerE.style.display = "block";
+    tableContainerE.style.textAlign = "center"
+}
+// add event listeners
